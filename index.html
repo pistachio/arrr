@@ -1,1 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Khaled Ipsum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2B705; --ink:#1B1340; --card:#FFF8E1; --accent:#E4325A; --accent-ink:#FFFFFF; --muted:#5A4A1A;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#15102E; --ink:#F7E7A8; --card:#221B47; --accent:#F2B705; --accent-ink:#1B1340; --muted:#B9AC7A;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15102E; --ink:#F7E7A8; --card:#221B47; --accent:#F2B705; --accent-ink:#1B1340; --muted:#B9AC7A;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:17px;line-height:1.55}
+main{max-width:760px;margin:0 auto;padding:40px 20px 56px}
+h1{font-family:"Bowlby One","Impact",sans-serif;font-weight:400;font-size:clamp(3rem,13vw,6.5rem);line-height:.92;letter-spacing:-.01em;margin:0 0 14px}
+.sub{margin:0 0 32px;font-size:1.05rem;max-width:44ch}
+.controls{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:end;margin-bottom:20px}
+label{display:flex;flex-direction:column;gap:4px;font-weight:500;font-size:.9rem}
+input[type=number],select{font:inherit;font-size:1rem;color:var(--ink);background:var(--card);border:2px solid var(--ink);border-radius:8px;padding:9px 12px;min-width:110px}
+.check{flex-direction:row;align-items:center;gap:8px;padding-bottom:10px}
+.check input{width:20px;height:20px;accent-color:var(--accent)}
+button{font:inherit;font-weight:700;cursor:pointer;border-radius:8px;padding:10px 20px;border:2px solid var(--ink)}
+#gen{background:var(--accent);color:var(--accent-ink)}
+#copy{background:transparent;color:var(--ink)}
+button:hover{transform:translateY(-1px)}
+:is(button,input,select):focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.out{background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:24px;min-height:140px;white-space:pre-wrap;font-size:1.05rem;line-height:1.65;max-width:100%;overflow-wrap:anywhere}
+.foot{margin:14px 0 0;font-size:.85rem;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){button:hover{transform:none}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Khaled Ipsum</h1>
+  <p class="sub">Placeholder text with major keys only. Pick an amount, hit generate, paste it anywhere.</p>
 
+  <div class="controls">
+    <label>Amount
+      <input id="n" type="number" min="1" max="50" value="3">
+    </label>
+    <label>Unit
+      <select id="unit">
+        <option value="paragraphs">Paragraphs</option>
+        <option value="sentences">Sentences</option>
+        <option value="words">Words</option>
+      </select>
+    </label>
+    <label class="check"><input id="start" type="checkbox" checked> Start with “Another one.”</label>
+    <button id="gen" type="button">Generate</button>
+    <button id="copy" type="button">Copy</button>
+  </div>
+
+  <div id="out" class="out" aria-live="polite"></div>
+  <p class="foot">Original lines written in the style of DJ Khaled. Not affiliated with him.</p>
+</main>
+
+<script>
+(function(){
+  var S = [
+    "Another one.",
+    "Major key: keep your circle small and your vision loud.",
+    "They don’t want you to win, so we win twice.",
+    "Congratulations, you played yourself.",
+    "Bless up, and wake up before the sun does.",
+    "Watch your back, but never look back.",
+    "Cocoa butter on the skin, success in the stars.",
+    "We the best, always have been, always will be.",
+    "Hold the grind like a golden microphone.",
+    "Every closed door is a hallway to a bigger room.",
+    "The ocean is not the limit, it’s the warm-up.",
+    "Respect the process, then respect the trophy.",
+    "Stay loyal to the vision and the vision stays loyal to you.",
+    "The sun came up, so you have no excuse.",
+    "Tell the haters to take a seat, the show is about to start.",
+    "Another cloud, another blessing, another jet to catch.",
+    "Always have faith, always have clean sneakers.",
+    "Learn from the great ones, then become one.",
+    "A real one never leaves the studio without a plan.",
+    "Anything is possible when the beat is right.",
+    "Never fold, never fumble, never forget who you are.",
+    "Drink water, count blessings, send the text.",
+    "Success is a long hallway with many doors, so keep walking.",
+    "Fresh towel, fresh mind, fresh start.",
+    "Don’t play yourself, play the long game.",
+    "The road to the top has no traffic, they just don’t know the route.",
+    "Anointed, appointed, and a little ahead of schedule.",
+    "Rest is a major key, so respect the pillow.",
+    "Water the vision, shine the vision, announce the vision.",
+    "Let’s take a jet ski out and think about the next move.",
+    "Take the key, lock in, and don’t give it back.",
+    "Few will ask how you did it, so let the results talk first.",
+    "Smile, they’re watching, and they’re taking notes.",
+    "The secret is to love what you do, then do it again.",
+    "Real ones check on the family before they check the charts.",
+    "Keep the energy high and the group chat higher."
+  ];
+
+  var bag = [];
+  function shuffle(a){
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function next(){
+    if (!bag.length) bag = shuffle(S.slice());
+    return bag.pop();
+  }
+  function sentences(n){
+    var out = [];
+    for (var i = 0; i < n; i++) out.push(next());
+    return out;
+  }
+
+  var $ = function(id){ return document.getElementById(id); };
+  var out = $("out");
+
+  function generate(){
+    var n = Math.max(1, Math.min(50, parseInt($("n").value, 10) || 1));
+    $("n").value = n;
+    var unit = $("unit").value;
+    var start = $("start").checked;
+    var text = "";
+
+    if (unit === "paragraphs") {
+      var paras = [];
+      for (var p = 0; p < n; p++) {
+        var s = sentences(4 + Math.floor(Math.random() * 4));
+        if (start && p === 0) s[0] = "Another one.";
+        paras.push(s.join(" "));
+      }
+      text = paras.join("\n\n");
+    } else if (unit === "sentences") {
+      var ss = sentences(n);
+      if (start) ss[0] = "Another one.";
+      text = ss.join(" ");
+    } else {
+      var words = start ? ["Another", "one."] : [];
+      while (words.length < n) words = words.concat(next().split(/\s+/));
+      text = words.slice(0, n).join(" ").replace(/[.,;:!?]+$/, "") + ".";
+    }
+    out.textContent = text;
+  }
+
+  function copy(){
+    var text = out.textContent;
+    var btn = $("copy");
+    function done(){
+      btn.textContent = "Copied";
+      setTimeout(function(){ btn.textContent = "Copy"; }, 1400);
+    }
+    function fallback(){
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); done(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else {
+      fallback();
+    }
+  }
+
+  $("gen").addEventListener("click", generate);
+  $("copy").addEventListener("click", copy);
+  ["n", "unit", "start"].forEach(function(id){
+    $(id).addEventListener("change", generate);
+  });
+  generate();
+})();
+</script>
+</body>
+</html>
