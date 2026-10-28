@@ -1,118 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Khaled Ipsum</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#F2B705; --ink:#1B1340; --card:#FFF8E1; --accent:#E4325A; --accent-ink:#FFFFFF; --muted:#5A4A1A;
-  color-scheme:light;
-  box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px);
-  padding-bottom:env(safe-area-inset-bottom,0px);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#15102E; --ink:#F7E7A8; --card:#221B47; --accent:#F2B705; --accent-ink:#1B1340; --muted:#B9AC7A;
-    color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#15102E; --ink:#F7E7A8; --card:#221B47; --accent:#F2B705; --accent-ink:#1B1340; --muted:#B9AC7A;
-  color-scheme:dark;
-}
-*,*::before,*::after{box-sizing:border-box}
-html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;font-size:17px;line-height:1.55}
-main{max-width:760px;margin:0 auto;padding:40px 20px 56px}
-h1{font-family:"Bowlby One","Impact",sans-serif;font-weight:400;font-size:clamp(3rem,13vw,6.5rem);line-height:.92;letter-spacing:-.01em;margin:0 0 14px}
-.sub{margin:0 0 32px;font-size:1.05rem;max-width:44ch}
-.controls{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:end;margin-bottom:20px}
-label{display:flex;flex-direction:column;gap:4px;font-weight:500;font-size:.9rem}
-input[type=number],select{font:inherit;font-size:1rem;color:var(--ink);background:var(--card);border:2px solid var(--ink);border-radius:8px;padding:9px 12px;min-width:110px}
-.check{flex-direction:row;align-items:center;gap:8px;padding-bottom:10px}
-.check input{width:20px;height:20px;accent-color:var(--accent)}
-button{font:inherit;font-weight:700;cursor:pointer;border-radius:8px;padding:10px 20px;border:2px solid var(--ink)}
-#gen{background:var(--accent);color:var(--accent-ink)}
-#copy{background:transparent;color:var(--ink)}
-button:hover{transform:translateY(-1px)}
-:is(button,input,select):focus-visible{outline:3px solid var(--ink);outline-offset:2px}
-.out{background:var(--card);border:2px solid var(--ink);border-radius:12px;padding:24px;min-height:140px;white-space:pre-wrap;font-size:1.05rem;line-height:1.65;max-width:100%;overflow-wrap:anywhere}
-.foot{margin:14px 0 0;font-size:.85rem;color:var(--muted)}
-@media (prefers-reduced-motion:reduce){button:hover{transform:none}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Voice Ipsum | Zen Mode</title>
+    
+    <!-- The Ice Cream Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍦</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --text-dark: #141413; --text-light: #faf9f5;
+            --bg-light: #faf9f5; --bg-dark: #141413;
+            --secondary: #8e8c84; --subtle-bg: #e8e6dc;
+            --accent-orange: #d97757; --accent-blue: #6a9bcc;
+            --accent-green: #788c5d; --accent-purple: #8c6d9c;
+            --current-bg: var(--bg-light); --current-text: var(--text-dark);
+            --border: var(--subtle-bg); --dock-bg: rgba(255, 255, 255, 0.85);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --current-bg: var(--bg-dark); --current-text: var(--text-light);
+                --border: #2d2d2b; --dock-bg: rgba(28, 28, 27, 0.85);
+            }
+        }
+
+        html, body {
+            height: 100%; overflow: hidden; background-color: var(--current-bg);
+            font-family: 'Lora', Georgia, serif; color: var(--current-text); font-size: 16px;
+        }
+
+        /* Top Navigation & Controls */
+        #top-bar {
+            position: fixed; top: 0; left: 0; right: 0; min-height: 60px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 32px; z-index: 100; flex-wrap: wrap; gap: 16px;
+            background: linear-gradient(to bottom, var(--current-bg) 70%, transparent);
+        }
+
+        .brand-title {
+            font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1rem;
+            color: var(--current-text); letter-spacing: 0.05em;
+        }
+
+        #nav-controls {
+            display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex; flex-direction: column; gap: 4px;
+        }
+
+        .control-group label {
+            font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.6rem;
+            text-transform: uppercase; letter-spacing: 0.05em; color: var(--secondary);
+        }
+
+        /* Zen styled inputs */
+        select, input[type="number"] {
+            font-family: 'Poppins', sans-serif; font-size: 0.8rem;
+            background: transparent; color: var(--current-text);
+            border: none; border-bottom: 1px solid var(--border);
+            padding: 4px 0; outline: none; cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        select:focus, input[type="number"]:focus { border-bottom-color: var(--accent-orange); }
+        
+        select option {
+            background: var(--current-bg); color: var(--current-text);
+        }
+
+        input[type="number"] { width: 60px; }
+
+        .check-row {
+            display: flex; align-items: center; gap: 8px; cursor: pointer;
+            font-family: 'Poppins', sans-serif; font-size: 0.8rem; color: var(--current-text);
+        }
+        .check-row input { accent-color: var(--accent-orange); width: 14px; height: 14px; cursor: pointer; }
+
+        /* The Reading Canvas */
+        #app { 
+            display: flex; justify-content: center; 
+            height: 100vh; padding: 100px 24px 140px 24px; 
+        }
+        
+        #out {
+            width: 100%; max-width: 760px; height: 100%; overflow-y: auto;
+            font-size: 1.25rem; line-height: 1.8; color: var(--current-text);
+            white-space: pre-wrap; overflow-wrap: break-word;
+            scrollbar-width: none; /* Hide scrollbar for zen feel */
+        }
+        #out::-webkit-scrollbar { display: none; }
+
+        /* The Floating Dock */
+        #control-dock {
+            position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+            display: flex; align-items: center; gap: 16px;
+            background: var(--dock-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            padding: 10px 20px; border-radius: 999px; border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 100;
+        }
+
+        .btn {
+            color: #fff; border-radius: 50%; border: none; cursor: pointer;
+            transition: transform 0.15s ease, filter 0.2s; 
+            display: flex; align-items: center; justify-content: center;
+        }
+        .btn:active { transform: scale(0.9); }
+        .btn:hover { filter: brightness(1.1); }
+
+        .btn-main { 
+            width: 56px; height: 56px; background: var(--accent-orange); 
+        }
+        
+        .btn-sm { 
+            width: 38px; height: 38px; background: var(--border); 
+            color: var(--current-text); opacity: 0.7; 
+        }
+        .btn-sm:hover { opacity: 1; color: var(--accent-blue); }
+
+        @media (max-width: 768px) {
+            #top-bar { padding: 12px 16px; justify-content: center; }
+            .brand-title { width: 100%; text-align: center; margin-bottom: 8px; }
+            #nav-controls { width: 100%; justify-content: center; }
+            #app { padding: 120px 16px 140px 16px; }
+        }
+    </style>
 </head>
 <body>
-<main>
-  <h1>Khaled Ipsum</h1>
-  <p class="sub">Placeholder text with major keys only. Pick an amount, hit generate, paste it anywhere.</p>
 
-  <div class="controls">
-    <label>Amount
-      <input id="n" type="number" min="1" max="50" value="3">
-    </label>
-    <label>Unit
-      <select id="unit">
-        <option value="paragraphs">Paragraphs</option>
-        <option value="sentences">Sentences</option>
-        <option value="words">Words</option>
-      </select>
-    </label>
-    <label class="check"><input id="start" type="checkbox" checked> Start with “Another one.”</label>
-    <button id="gen" type="button">Generate</button>
-    <button id="copy" type="button">Copy</button>
-  </div>
+<div id="top-bar">
+    <div class="brand-title">VOICE IPSUM</div>
+    
+    <div id="nav-controls">
+        <div class="control-group">
+            <label>Voice</label>
+            <select id="voice">
+                <option value="khaled">DJ Khaled</option>
+                <option value="pirate">Pirate</option>
+                <option value="yoda">Yoda</option>
+                <option value="chef">Furious chef</option>
+                <option value="linkedin">LinkedIn guru</option>
+                <option value="nature">Nature doc</option>
+                <option value="sports">Sports commentator</option>
+                <option value="noir">Noir detective</option>
+                <option value="painter">Bob Ross</option>
+            </select>
+        </div>
 
-  <div id="out" class="out" aria-live="polite"></div>
-  <p class="foot">Original lines written in the style of DJ Khaled. Not affiliated with him.</p>
-</main>
+        <div class="control-group">
+            <label>Amount</label>
+            <input id="n" type="number" min="1" max="50" value="3">
+        </div>
+
+        <div class="control-group">
+            <label>Unit</label>
+            <select id="unit">
+                <option value="paragraphs">Paragraphs</option>
+                <option value="sentences">Sentences</option>
+                <option value="words">Words</option>
+            </select>
+        </div>
+
+        <label class="check-row" style="margin-top: 12px;">
+            <input id="start" type="checkbox" checked> 
+            <span id="startlbl">Start with opener</span>
+        </label>
+    </div>
+</div>
+
+<div id="app">
+    <div id="out" aria-live="polite"></div>
+</div>
+
+<div id="control-dock">
+    <!-- Generate Button (Main action, styled like the Mic) -->
+    <button id="gen" class="btn btn-main" title="Generate Text">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+        </svg>
+    </button>
+
+    <!-- Copy Button (Secondary action) -->
+    <button id="copy" class="btn btn-sm" title="Copy to Clipboard">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+        </svg>
+    </button>
+</div>
 
 <script>
 (function(){
-  var S = [
-    "Another one.",
-    "Major key: keep your circle small and your vision loud.",
-    "They don’t want you to win, so we win twice.",
-    "Congratulations, you played yourself.",
-    "Bless up, and wake up before the sun does.",
-    "Watch your back, but never look back.",
-    "Cocoa butter on the skin, success in the stars.",
-    "We the best, always have been, always will be.",
-    "Hold the grind like a golden microphone.",
-    "Every closed door is a hallway to a bigger room.",
-    "The ocean is not the limit, it’s the warm-up.",
-    "Respect the process, then respect the trophy.",
-    "Stay loyal to the vision and the vision stays loyal to you.",
-    "The sun came up, so you have no excuse.",
-    "Tell the haters to take a seat, the show is about to start.",
-    "Another cloud, another blessing, another jet to catch.",
-    "Always have faith, always have clean sneakers.",
-    "Learn from the great ones, then become one.",
-    "A real one never leaves the studio without a plan.",
-    "Anything is possible when the beat is right.",
-    "Never fold, never fumble, never forget who you are.",
-    "Drink water, count blessings, send the text.",
-    "Success is a long hallway with many doors, so keep walking.",
-    "Fresh towel, fresh mind, fresh start.",
-    "Don’t play yourself, play the long game.",
-    "The road to the top has no traffic, they just don’t know the route.",
-    "Anointed, appointed, and a little ahead of schedule.",
-    "Rest is a major key, so respect the pillow.",
-    "Water the vision, shine the vision, announce the vision.",
-    "Let’s take a jet ski out and think about the next move.",
-    "Take the key, lock in, and don’t give it back.",
-    "Few will ask how you did it, so let the results talk first.",
-    "Smile, they’re watching, and they’re taking notes.",
-    "The secret is to love what you do, then do it again.",
-    "Real ones check on the family before they check the charts.",
-    "Keep the energy high and the group chat higher."
+  var V = {}, O = {};
+  V.khaled = [
+    "Another one.","Major key: keep your circle small and your vision loud.","They don’t want you to win, so we win twice.","Congratulations, you played yourself.","Bless up, and wake up before the sun does.","Watch your back, but never look back.","Cocoa butter on the skin, success in the stars.","We the best, always have been, always will be.","Hold the grind like a golden microphone.","Every closed door is a hallway to a bigger room.","The ocean is not the limit, it’s the warm-up.","Respect the process, then respect the trophy.","Stay loyal to the vision and the vision stays loyal to you.","The sun came up, so you have no excuse.","Tell the haters to take a seat, the show is about to start.","Another cloud, another blessing, another jet to catch.","Always have faith, always have clean sneakers.","Learn from the great ones, then become one.","A real one never leaves the studio without a plan.","Anything is possible when the beat is right.","Never fold, never fumble, never forget who you are.","Drink water, count blessings, send the text.","Success is a long hallway with many doors, so keep walking.","Fresh towel, fresh mind, fresh start.","Don’t play yourself, play the long game.","The road to the top has no traffic, they just don’t know the route.","Anointed, appointed, and a little ahead of schedule.","Rest is a major key, so respect the pillow.","Water the vision, shine the vision, announce the vision.","Let’s take a jet ski out and think about the next move.","Take the key, lock in, and don’t give it back.","Few will ask how you did it, so let the results talk first.","Smile, they’re watching, and they’re taking notes.","The secret is to love what you do, then do it again.","Real ones check on the family before they check the charts.","Keep the energy high and the group chat higher."
   ];
+  O.khaled = "Another one.";
 
-  var bag = [];
+  V.pirate = [
+    "Arr, hoist the colors and bring me the good rum.","The sea be a fickle mistress, but she pays in doubloons.","Ye scurvy dogs be swabbing the deck before the tide turns.","Shiver me timbers, there be a storm brewin’ off the port bow.","A map without an X is just a very sad piece of paper.","Every sailor knows the parrot hears more than the captain.","Fair winds and full barrels, me hearties.","Never trust a ship’s cook who won’t share the biscuits.","Aye, the treasure be buried where no honest soul would dig.","Batten the hatches, for the kraken be hungry tonight.","A captain’s word be worth less than a wet match, but his rum be worth a kingdom.","Lower the anchor, raise the mugs, and sing till the lanterns burn out.","The only thing worse than a mutiny be a mutiny with a long speech.","We sail at dawn, or whenever the captain finds his hat.","Beware the island that welcomes ye with free coconuts."
+  ];
+  O.pirate = "Arr, hoist the colors.";
+
+  V.yoda = [
+    "Patience, you must have, my young padawan.","Strong with the Force, this one is, but hungry for snacks, he also is.","Do or do not, there is no try, and no third option either.","Fear leads to anger, anger leads to meetings, meetings lead to suffering.","Much to learn, you still have, and a nap, you need.","Hmm, difficult to see, the future is, always in motion.","Small, the swamp is, but big, the lessons are.","Trust your feelings, you must, but check your email, you should.","Wise, the one who listens is. Wiser, the one who stops talking.","Clouded, your mind is. Clear it, a cup of tea will.","Strange, the path is, but walk it, you will.","Lost, the keys are, as always. In the Force, find them, you will not.","Begin, the training must, before the sun sets over Dagobah.","Patient, the river is, yet still it carves the mountain.","Listen to the old green one, you should, for seen things, he has."
+  ];
+  O.yoda = "Patience, you must have.";
+
+  V.chef = [
+    "Right, listen up, this chicken is so raw it’s still looking for its mother.","Where is the seasoning? It tastes like a hospital meal.","Stop. Look at me. Look at the plate. Now tell me that’s food.","This risotto is so thick I could lay bricks with it.","Wake up, the oven is not a decoration.","You’ve cooked this fish for so long, it’s filed for retirement.","Salt, acid, fat, heat. Four things. Four. And you’ve forgotten all of them.","Move, move, move, the pass is on fire and so am I.","Beautiful. Now do it again, but this time with feeling.","That’s not a sauce, it’s a cry for help.","Taste it. Taste it! And tell me you’d serve that to your gran.","The onions are crying, and frankly, so am I.","Clean station, clean mind, sharp knives, no excuses.","Gorgeous colour on that sear. Finally, something to be proud of.","Service in five minutes, and you’re still arguing with the parsley."
+  ];
+  O.chef = "Right, listen up.";
+
+  V.linkedin = [
+    "I’m humbled to announce that I have finished lunch.","Three years ago, I was just a guy with a laptop and a dream. Today, I’m a guy with two laptops.","Here’s what rejection taught me about leadership.","Agree? Let’s connect.","I’m not saying hustle is everything, but I wrote this at 4:30 a.m.","Thrilled to share that I’ve joined an incredible team of incredible people.","My intern taught me more about synergy than any MBA ever could.","Let that sink in.","Grateful for every mentor, every mistake, and every free coffee.","Culture eats strategy for breakfast, and I eat both before 6 a.m.","Here are 7 lessons I learned from a parking ticket.","Don’t just network, build meaningful relationships, then ask for a referral.","Growth mindset isn’t a slogan, it’s a Tuesday.","Be the change you want to see in the quarterly roadmap.","Reposting because this changed how I think about elevators."
+  ];
+  O.linkedin = "I’m humbled to announce something.";
+
+  V.nature = [
+    "And so, the journey begins.","In the hush of dawn, the herd gathers, unaware that it is being watched.","Here, at the edge of the water, patience is the only currency.","The female surveys the horizon, her instincts sharper than any map.","Against all odds, the young one takes its first unsteady steps.","Winter is coming, and with it, the long migration.","Silence. Then, a single rustle in the reeds.","For three weeks, he has not eaten. Tonight, everything changes.","Nothing here is wasted, nothing is wanted, and nothing is safe.","The sun climbs, and the heat shimmers across the plain like a held breath.","Rivals circle one another, each waiting for the other to blink.","It is a harsh world, but also, remarkably, a beautiful one.","Deep beneath the canopy, life carries on in quiet, vivid detail.","One mistake is all it takes. Fortunately, he makes several.","As night falls, the forest does not sleep. It merely changes shifts."
+  ];
+  O.nature = "And so, the journey begins.";
+
+  V.sports = [
+    "And we are underway, folks, what a night for it!","He’s got the ball, he’s got the space, he’s got absolutely everything but a plan!","Unbelievable scenes here, the crowd is on its feet!","That is a textbook pass, straight out of the coaching manual.","They’ll be disappointed with that, they’ll be very disappointed.","Ten seconds left, and the whole season comes down to this.","What a strike! The keeper never saw it, and honestly, neither did I.","He’s giving it a hundred and ten percent, and some of it is even legal.","The referee has blown, and nobody knows why, not even the referee.","This is a game of two halves, and one very confused mascot.","And it’s over! A result they’ll be talking about for years.","The momentum has shifted, you can feel it in the stands.","A tackle like that doesn’t show up on the stat sheet, but it shows up on the shin.","Replay confirms it, and the replay is also stunned.","The coach looks calm, but his clipboard says otherwise."
+  ];
+  O.sports = "And we are underway!";
+
+  V.noir = [
+    "The rain hadn’t stopped for three days, and neither had the trouble.","She walked in like a bad decision wearing a good coat.","Every city has its secrets. This one kept them in a drawer marked unpaid.","The neon sign buzzed like a fly that had given up on life.","I poured two fingers of whiskey and let the silence finish the story.","Nobody tells the truth in this town, but they lie beautifully.","The case was cold, but the coffee was colder.","A dame, a dead end, and a dollar short. That was my Tuesday.","The cigarette burned down to the filter, and so did my patience.","Trust is a coin with two heads, and both are lying.","Somewhere in the dark a saxophone cried, and I knew exactly how it felt.","The files on my desk smelled of old ink and older mistakes.","Footsteps echoed in the alley, always one step behind mine.","The mayor smiled the way a shark smiles at a swimmer.","I’d been double-crossed before, but never this politely."
+  ];
+  O.noir = "The rain hadn’t stopped for three days.";
+
+  V.painter = [
+    "Let’s just have a little fun today.","We’ll put a happy little cloud right up here, and he’ll live there forever.","There are no mistakes here, only happy little accidents.","Just tap the brush gently, like you’re waking up a sleeping bird.","Every mountain needs a friend, so we’ll give him another.","A little white, a little patience, and we’re in business.","Don’t be afraid to try, this is your world and you’re in charge.","We’ll add a tiny tree right over here, because he’s been feeling lonely.","Wash the brush, tap, tap, tap, and let all that old paint fall away.","A soft blue sky, a warm glow, and nothing in the world to worry about.","Nice and easy now, there’s no rush at all.","Maybe there’s a little river wandering through, going wherever it likes.","Shadows are just where the light takes a break.","Take a deep breath, and let the canvas do some of the work.","And just like that, we have a little cabin, and somebody’s probably making tea."
+  ];
+  O.painter = "Let’s just have a little fun today.";
+
+  var bag = [], S = V.khaled;
   function shuffle(a){
     for (var i = a.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
@@ -138,22 +272,26 @@ button:hover{transform:translateY(-1px)}
     $("n").value = n;
     var unit = $("unit").value;
     var start = $("start").checked;
+    var v = $("voice").value;
+    if (S !== V[v]) { S = V[v]; bag = []; }
+    var open = O[v];
+    $("startlbl").textContent = "Start with “" + open + "”";
     var text = "";
 
     if (unit === "paragraphs") {
       var paras = [];
       for (var p = 0; p < n; p++) {
         var s = sentences(4 + Math.floor(Math.random() * 4));
-        if (start && p === 0) s[0] = "Another one.";
+        if (start && p === 0) s[0] = open;
         paras.push(s.join(" "));
       }
       text = paras.join("\n\n");
     } else if (unit === "sentences") {
       var ss = sentences(n);
-      if (start) ss[0] = "Another one.";
+      if (start) ss[0] = open;
       text = ss.join(" ");
     } else {
-      var words = start ? ["Another", "one."] : [];
+      var words = start ? open.split(" ") : [];
       while (words.length < n) words = words.concat(next().split(/\s+/));
       text = words.slice(0, n).join(" ").replace(/[.,;:!?]+$/, "") + ".";
     }
@@ -164,8 +302,9 @@ button:hover{transform:translateY(-1px)}
     var text = out.textContent;
     var btn = $("copy");
     function done(){
-      btn.textContent = "Copied";
-      setTimeout(function(){ btn.textContent = "Copy"; }, 1400);
+      // Visual feedback on the icon
+      btn.style.color = "var(--accent-green)";
+      setTimeout(function(){ btn.style.color = ""; }, 1400);
     }
     function fallback(){
       var ta = document.createElement("textarea");
@@ -186,9 +325,11 @@ button:hover{transform:translateY(-1px)}
 
   $("gen").addEventListener("click", generate);
   $("copy").addEventListener("click", copy);
-  ["n", "unit", "start"].forEach(function(id){
+  ["voice", "n", "unit", "start"].forEach(function(id){
     $(id).addEventListener("change", generate);
   });
+  
+  // Initial generation
   generate();
 })();
 </script>
